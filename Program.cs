@@ -5,36 +5,43 @@ int choiceOne = 1;
 int choiceTwo = 2;
 int choiceThree = 3;
 
+string cat = "Cat";
+string dog = "Dog";
+string rabbit = "Rabbit";
+
 // Allow the user to choose a pet type
 Console.WriteLine("Please choose a type of pet:");
-Console.WriteLine($"{choiceOne}. Cat");
-Console.WriteLine($"{choiceTwo}. Dog");
-Console.WriteLine($"{choiceThree}. Rabbit");
+Console.WriteLine($"{choiceOne}. {cat}");
+Console.WriteLine($"{choiceTwo}. {dog}");
+Console.WriteLine($"{choiceThree}. {rabbit}");
 
 Console.WriteLine("User Input: ");
 int petTypeChoice = Convert.ToInt32(Console.ReadLine());
 
+string selectedPet = String.Empty;
+
 switch (petTypeChoice)
 {
     case 1:
-        Console.WriteLine("You've chosen a Cat. What would you like to name your pet?");
+        selectedPet = cat;
+        Console.WriteLine($"You've chosen a {cat}. What would you like to name your pet?");
         break;
     case 2:
-        Console.WriteLine("You've chosen a Dog. What would you like to name your pet?");
+        selectedPet = dog;
+        Console.WriteLine($"You've chosen a {dog}. What would you like to name your pet?");
         break;
     case 3:
-        Console.WriteLine("You've chosen a Rabbit. What would you like to name your pet?");
+        selectedPet = rabbit;
+        Console.WriteLine($"You've chosen a {rabbit}. What would you like to name your pet?");
         break;
     default:
         Console.WriteLine("Wrong input");
         break;
 }
 
-string petType = Console.ReadLine();
-
 // Give the pet a name
-Console.Write("Give your pet a name: ");
+Console.WriteLine("Give your pet a name: ");
 string petName = Console.ReadLine();
 
 // Display a welcome message
-Console.WriteLine($"\nCongratulations! You now have a {petType} named {petName}.");
+Console.WriteLine($"Congratulations! You now have a {selectedPet} named {petName}.");
