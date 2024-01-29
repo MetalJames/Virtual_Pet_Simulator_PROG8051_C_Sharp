@@ -1,5 +1,6 @@
 ﻿// Step 1: Pet Creation
 Console.WriteLine("Welcome to the Virtual Pet Simulator!");
+Console.WriteLine();
 
 int choiceOne = 1;
 int choiceTwo = 2;
@@ -11,12 +12,15 @@ string rabbit = "Rabbit";
 
 // Allow the user to choose a pet type
 Console.WriteLine("Please choose a type of pet:");
+Console.WriteLine();
 Console.WriteLine($"{choiceOne}. {cat}");
 Console.WriteLine($"{choiceTwo}. {dog}");
 Console.WriteLine($"{choiceThree}. {rabbit}");
+Console.WriteLine();
 
 Console.WriteLine("User Input: ");
 int petTypeChoice = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
 
 string selectedPet = String.Empty;
 
@@ -25,17 +29,21 @@ switch (petTypeChoice)
     case 1:
         selectedPet = cat;
         Console.WriteLine($"You've chosen a {cat}. What would you like to name your pet?");
+        Console.WriteLine();
         break;
     case 2:
         selectedPet = dog;
         Console.WriteLine($"You've chosen a {dog}. What would you like to name your pet?");
+        Console.WriteLine();
         break;
     case 3:
         selectedPet = rabbit;
         Console.WriteLine($"You've chosen a {rabbit}. What would you like to name your pet?");
+        Console.WriteLine();
         break;
     default:
         Console.WriteLine("Wrong input");
+        Console.WriteLine();
         break;
 }
 
@@ -88,10 +96,10 @@ while (run)
             Feed(hunger, health, selectedPet);
             break;
         case 2:
-            Console.WriteLine(play);
+            Play(hunger, happiness, selectedPet);
             break;
         case 3:
-            Console.WriteLine(rest);
+            Rest(health, happiness, selectedPet);
             break;
         case 4:
             CheckStatus(hunger, happiness, health, selectedPet);
@@ -108,15 +116,37 @@ while (run)
 
 static void Feed(int hunger, int health, string selectedPet)
 {
-    hunger = hunger + 2;
-    health = health + 1;
+    hunger += 2;
+    health++;
+    Console.WriteLine();
     Console.WriteLine($"You feed {selectedPet}");
+    Console.WriteLine();
+}
+
+static void Play(int hunger, int happiness, string selectedPet)
+{
+    hunger--;
+    happiness +=2;
+    Console.WriteLine();
+    Console.WriteLine($"You feed {selectedPet}");
+    Console.WriteLine();
+}
+
+static void Rest(int health, int happiness, string selectedPet)
+{
+    health +=2;
+    happiness--;
+    Console.WriteLine();
+    Console.WriteLine($"You feed {selectedPet}");
+    Console.WriteLine();
 }
 
 static void CheckStatus(int hunger, int happiness, int health, string selectedPet)
 {
+    Console.WriteLine();
     Console.WriteLine($"{selectedPet} Status");
     Console.WriteLine($"- Hunger: {hunger}");
     Console.WriteLine($"- Happiness: {happiness}");
     Console.WriteLine($"- Health: {health}");
+    Console.WriteLine();
 }
