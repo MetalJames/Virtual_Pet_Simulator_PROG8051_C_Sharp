@@ -45,3 +45,78 @@ string petName = Console.ReadLine();
 
 // Display a welcome message
 Console.WriteLine($"Congratulations! You now have a {selectedPet} named {petName}.");
+
+// Step 2: Pet Care Actions
+
+int hunger = 5;
+int happiness = 5;
+int health = 5;
+
+bool run = true;
+
+while (run)
+{
+    int actionOne = 1;
+    int actionTwo = 2;
+    int actionThree = 3;
+    int actionFour = 4;
+    int actionFive = 5;
+
+    string feed = "Feed";
+    string play = "Play";
+    string rest = "Rest";
+    string checkStatus = "Check Status";
+    string exit = "Exit";
+
+    // Display options for user interaction
+    Console.WriteLine("Choose an action:");
+    Console.WriteLine($"{actionOne}. {feed}");
+    Console.WriteLine($"{actionTwo}. {play}");
+    Console.WriteLine($"{actionThree}. {rest}");
+    Console.WriteLine($"{actionFour}. {checkStatus}");
+    Console.WriteLine($"{actionFive}. {exit}");
+    Console.WriteLine();
+
+    // Get user choice
+    Console.WriteLine("Enter your choice (1-5): ");
+    int choice = Convert.ToInt32(Console.ReadLine());
+
+    // Perform the chosen action
+    switch (choice)
+    {
+        case 1:
+            Feed(hunger, health, selectedPet);
+            break;
+        case 2:
+            Console.WriteLine(play);
+            break;
+        case 3:
+            Console.WriteLine(rest);
+            break;
+        case 4:
+            CheckStatus(hunger, happiness, health, selectedPet);
+            break;
+        case 5:
+            Console.WriteLine("Exiting the Virtual Pet Simulator. Goodbye!");
+            run = false;
+            break;
+        default:
+            Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
+            break;
+    }
+}
+
+static void Feed(int hunger, int health, string selectedPet)
+{
+    hunger = hunger + 2;
+    health = health + 1;
+    Console.WriteLine($"You feed {selectedPet}");
+}
+
+static void CheckStatus(int hunger, int happiness, int health, string selectedPet)
+{
+    Console.WriteLine($"{selectedPet} Status");
+    Console.WriteLine($"- Hunger: {hunger}");
+    Console.WriteLine($"- Happiness: {happiness}");
+    Console.WriteLine($"- Health: {health}");
+}
