@@ -50,15 +50,17 @@ switch (petTypeChoice)
 // Give the pet a name
 Console.WriteLine("Give your pet a name: ");
 string petName = Console.ReadLine();
+Console.WriteLine();
 
 // Display a welcome message
 Console.WriteLine($"Congratulations! You now have a {selectedPet} named {petName}.");
+Console.WriteLine();
 
 // Step 2: Pet Care Actions
 
-int hunger = 5;
-int happiness = 5;
-int health = 5;
+int hunger = 10;
+int happiness = 10;
+int health = 10;
 
 bool run = true;
 
@@ -75,6 +77,23 @@ while (run)
     string rest = "Rest";
     string checkStatus = "Check Status";
     string exit = "Exit";
+
+    // Update pet stats based on time passage
+    hunger -= 1; // Increase hunger over time
+    happiness -= 1; // Decrease happiness slightly over time
+    // if(hunger <= 3 || happiness <= 3) {
+    //     health -= 3;
+    // }
+
+    if(hunger >= 15){
+        Console.WriteLine();
+        Console.WriteLine("You feed me too much! I can not eat any more!");
+        health -= 3;
+        Console.WriteLine();
+    } else if (hunger <= 3 || happiness <= 3)
+    {
+        health -= 3;
+    }
 
     // Display options for user interaction
     Console.WriteLine("Choose an action:");
@@ -93,13 +112,13 @@ while (run)
     switch (choice)
     {
         case 1:
-            Feed(hunger, health, selectedPet);
+            Feed(ref hunger, ref health, ref selectedPet);
             break;
         case 2:
-            Play(hunger, happiness, selectedPet);
+            Play(ref hunger, ref happiness, ref selectedPet);
             break;
         case 3:
-            Rest(health, happiness, selectedPet);
+            Rest(ref health, ref happiness, ref selectedPet);
             break;
         case 4:
             CheckStatus(hunger, happiness, health, selectedPet);
@@ -114,30 +133,30 @@ while (run)
     }
 }
 
-static void Feed(int hunger, int health, string selectedPet)
+static void Feed(ref int hunger, ref int health, ref string selectedPet)
 {
-    hunger += 2;
+    hunger += 4;
     health++;
     Console.WriteLine();
-    Console.WriteLine($"You feed {selectedPet}");
+    Console.WriteLine($"You feed {selectedPet}, he is very thankful for that :)");
     Console.WriteLine();
 }
 
-static void Play(int hunger, int happiness, string selectedPet)
+static void Play(ref int hunger, ref int happiness, ref string selectedPet)
 {
     hunger--;
     happiness +=2;
     Console.WriteLine();
-    Console.WriteLine($"You feed {selectedPet}");
+    Console.WriteLine($"That was a nice game with {selectedPet} :)");
     Console.WriteLine();
 }
 
-static void Rest(int health, int happiness, string selectedPet)
+static void Rest(ref int health, ref int happiness, ref string selectedPet)
 {
     health +=2;
     happiness--;
     Console.WriteLine();
-    Console.WriteLine($"You feed {selectedPet}");
+    Console.WriteLine($"Your {selectedPet} is taking a nap :)");
     Console.WriteLine();
 }
 
@@ -149,4 +168,14 @@ static void CheckStatus(int hunger, int happiness, int health, string selectedPe
     Console.WriteLine($"- Happiness: {happiness}");
     Console.WriteLine($"- Health: {health}");
     Console.WriteLine();
+
+    // Check for critical conditions of our pet
+    if (hunger <= 2)
+        Console.WriteLine("Your pet is starving! Feed it soon!");
+    if (hunger >= 9)
+        Console.WriteLine("Your pet is getting too much food! Stop feeding him!");
+    if (happiness <= 3)
+        Console.WriteLine("Your pet is very unhappy. Play with it to make it happy!");
+    if (health <= 1)
+        Console.WriteLine("Your pet's health is critical. Take care of its health!");
 }
