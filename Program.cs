@@ -30,6 +30,7 @@ class VirtualPetSimulator
             else if (hunger <= 3 || happiness <= 3)
             {
                 health -= 3;
+                Console.WriteLine("I am hungry and unhappy :( Please feed me and play with me.");
             }
 
             // Display options for user interaction
@@ -43,7 +44,15 @@ class VirtualPetSimulator
 
             // Get user choice
             Console.WriteLine("Enter your choice (1-5): ");
-            int choice = Convert.ToInt32(Console.ReadLine());
+
+            // This will prevent program from crashing if user will enter anything else besides 1-5(character or any special character)
+            bool validInput = int.TryParse(Console.ReadLine(), out int choice);
+
+            if (!validInput || choice < 1 || choice > 5)
+            {
+                Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
+                continue; // Restart the loop or handle it accordingly
+            }
 
             // Perform the chosen action
             switch (choice)
