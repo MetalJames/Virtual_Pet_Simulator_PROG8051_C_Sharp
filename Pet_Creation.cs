@@ -10,10 +10,6 @@ namespace Virtual_Pet_Simulator_PROG8051_C__
             Console.WriteLine("Welcome to the Virtual Pet Simulator!");
             Console.WriteLine();
 
-            int choiceOne = 1;
-            int choiceTwo = 2;
-            int choiceThree = 3;
-
             string cat = "Cat";
             string dog = "Dog";
             string rabbit = "Rabbit";
@@ -21,9 +17,9 @@ namespace Virtual_Pet_Simulator_PROG8051_C__
             // Allow the user to choose a pet type
             Console.WriteLine("Please choose a type of pet:");
             Console.WriteLine();
-            Console.WriteLine($"{choiceOne}. {cat}");
-            Console.WriteLine($"{choiceTwo}. {dog}");
-            Console.WriteLine($"{choiceThree}. {rabbit}");
+            Console.WriteLine($"1. {cat}");
+            Console.WriteLine($"2. {dog}");
+            Console.WriteLine($"3. {rabbit}");
             Console.WriteLine();
 
             Console.WriteLine("User Input: ");

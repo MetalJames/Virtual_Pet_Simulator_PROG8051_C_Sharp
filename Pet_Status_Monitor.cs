@@ -1,6 +1,6 @@
 ﻿namespace Virtual_Pet_Simulator_PROG8051_C__;
 
-public class Pet_Status_Monitoing
+public class Pet_Status_Monitor
 {
     public static void CheckStatus(int hunger, int happiness, int health, string selectedPet)
     {
