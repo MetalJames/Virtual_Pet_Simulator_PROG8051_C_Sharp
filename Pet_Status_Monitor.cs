@@ -14,21 +14,17 @@ public class Pet_Status_Monitor
         // Check for critical conditions of our pet
         if (hunger <= 2)
         {
-            Console.WriteLine("Your pet is starving! Feed it soon!");
+            Console.WriteLine("Your pet is starving! Feed him now!");
         }
-        else if (hunger >= 9)
-        {
-            Console.WriteLine("Your pet is getting too much food! Stop feeding him!");
-        }
-
+        
         if (happiness <= 3)
         {
-            Console.WriteLine("Your pet is very unhappy. Play with it to make it happy!");
+            Console.WriteLine("Your pet is very unhappy. Play with him to make him happier!");
         }
 
-        if (health <= 1)
+        if (health <= 3)
         {
-            Console.WriteLine("Your pet's health is critical. Take care of its health!");
+            Console.WriteLine("Your pet's health is critical. Take care of him!");
         }
     }
 }

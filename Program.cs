@@ -18,6 +18,8 @@ class VirtualPetSimulator
 
             bool run = true;
 
+            bool restart = true;
+
             while (run)
             {
                 // Update pet stats based on time passage
@@ -52,7 +54,7 @@ class VirtualPetSimulator
                         Pet_Care_Actions.Feed(ref hunger, ref health, ref selectedPet);
                         break;
                     case 2:
-                        Pet_Care_Actions.Play(ref hunger, ref happiness, ref selectedPet);
+                        Pet_Care_Actions.Play(ref hunger, ref happiness, ref health, ref selectedPet);
                         break;
                     case 3:
                         Pet_Care_Actions.Rest(ref health, ref happiness, ref selectedPet);
@@ -63,27 +65,21 @@ class VirtualPetSimulator
                     case 5:
                         Console.WriteLine("Exiting the Virtual Pet Simulator. Goodbye!");
                         run = false;
+                        playAgain = false;
+                        restart = false;
                         break;
                 }
-
-                if (hunger >= 15)
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("You feed me too much! I can not eat any more!");
-                    health -= 3;
-                    Console.WriteLine();
-                }
-                else if (hunger <= 4)
+                
+                if (hunger >= 1 && hunger <= 4)
                 {
                     health -= 3;
                     Console.WriteLine("I am hungry :( Please feed me.");
                 }
-                else if (happiness <= 4)
+                if (happiness <= 4)
                 {
                     health -= 3;
                     Console.WriteLine("I feel lonely and unhappy :( Can you play with me.");
                 }
-                else { Console.WriteLine(); }
 
                 if (hunger == 0 || health == 0)
                 {
@@ -91,8 +87,6 @@ class VirtualPetSimulator
                     run = false;
                 }
             }
-
-            bool restart = true;
 
             while (restart)
             {
