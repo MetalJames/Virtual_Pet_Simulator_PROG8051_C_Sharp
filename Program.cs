@@ -25,6 +25,7 @@ class VirtualPetSimulator
                 // Update pet stats based on time passage
                 hunger++; // Increase hunger over time
                 happiness--; // Decrease happiness slightly over time
+                // Preventing happiness from falling below 0
                 if (happiness < 0)
                 {
                     happiness = 0; 
@@ -42,67 +43,76 @@ class VirtualPetSimulator
                 // Get user choice
                 Console.Write("Enter your choice (1-5): ");
 
-                // This will prevent program from crashing if user will enter anything else besides 1-5(character or any special character)
+                // This will prevent the program from crashing if the user enters anything else besides 1-5 (character or any special character)
                 bool validActionInput = int.TryParse(Console.ReadLine(), out int choiceAction);
 
                 if (!validActionInput || choiceAction < 1 || choiceAction > 5)
                 {
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
-                    continue; // Restart the loop or handle it accordingly
+                    continue;
                 }
 
-                // Perform the chosen action
+                // Perform the choosen action
                 switch (choiceAction)
                 {
                     case 1:
-                        Pet_Care_Actions.Feed(ref hunger, ref health, ref selectedPet);
+                        Pet_Care_Actions.Feed(ref hunger, ref health, ref petName);
                         break;
                     case 2:
-                        Pet_Care_Actions.Play(ref hunger, ref happiness, ref health, ref selectedPet);
+                        Pet_Care_Actions.Play(ref hunger, ref happiness, ref health, ref petName);
                         break;
                     case 3:
-                        Pet_Care_Actions.Rest(ref health, ref happiness, ref selectedPet);
+                        Pet_Care_Actions.Rest(ref health, ref happiness, ref petName);
                         break;
                     case 4:
-                        Pet_Status_Monitor.CheckStatus(hunger, happiness, health, selectedPet);
+                        Pet_Status_Monitor.CheckStatus(hunger, happiness, health, petName);
                         break;
                     case 5:
+                        Console.WriteLine();
                         Console.WriteLine("Exiting the Virtual Pet Simulator. Goodbye!");
                         run = false;
                         playAgain = false;
                         restart = false;
                         break;
                 }
-                
-                if (hunger >= 7 && hunger <= 9)
+
+                // Check for hunger and happiness conditions only if the user did not choose to check the status or exit
+                if (choiceAction != 4 || choiceAction == 5)
                 {
-                    health -= 3;
-                    Console.WriteLine("I am hungry :( Please feed me.");
-                    Console.WriteLine();
-                }
-                if (happiness >= 2 && happiness <= 3)
-                {
-                    health--;
-                    Console.WriteLine("I feel lonely and unhappy :( Can you play with me.");
-                    Console.WriteLine();
-                }
-                else if (happiness == 1)
-                {
-                    health--;
-                    Console.WriteLine("I am depressed. Pleaasssssse - play with me!");
-                    Console.WriteLine();
-                }
-                else if (happiness <= 1)
-                {
-                    health--;
-                    happiness = 0;
+                    if (hunger >= 7 && hunger <= 9)
+                    {
+                        health -= 3;
+                        Console.WriteLine("I am hungry :( Please feed me.");
+                        Console.WriteLine();
+                    }
+                    if (happiness >= 2 && happiness <= 3)
+                    {
+                        health--;
+                        Console.WriteLine("I feel lonely and unhappy :( Can you play with me.");
+                        Console.WriteLine();
+                    }
+                    else if (happiness == 1)
+                    {
+                        health--;
+                        Console.WriteLine("I am depressed. Pleaasssssse - play with me!");
+                        Console.WriteLine();
+                    }
+                    else if (happiness <= 1)
+                    {
+                        health--;
+                        happiness = 0;
+                    }
                 }
 
-                if (hunger == 10 || health == 0)
+                // Check for game-ending conditions only if the user did not choose to exit
+                if (choiceAction != 5)
                 {
-                    Console.WriteLine("You were very negled. Your pet died :(");
-                    Console.WriteLine();
-                    run = false;
+                    if (hunger >= 10 || health <= 0)
+                    {
+                         Console.WriteLine("You were very negled. Your pet died :(");
+                         Console.WriteLine();
+                         run = false;
+                    }
                 }
             }
 
@@ -114,16 +124,20 @@ class VirtualPetSimulator
                 Console.WriteLine("2. No");
                 Console.WriteLine();
 
-                // This will prevent program from crashing if the user enters anything else besides 1-2 (character or any special character)
+                // Get user choice
+                Console.Write("Enter your choice (1-5): ");
+                // This will prevent the program from crashing if the user enters anything else besides 1-2 (character or any special character)
                 bool validRestartGameInput = int.TryParse(Console.ReadLine(), out int chooseRestartGameAction);
 
                 if (!validRestartGameInput || (chooseRestartGameAction != 1 && chooseRestartGameAction != 2))
                 {
                     Console.WriteLine("Invalid input. Please enter either 1 or 2.");
-                    continue; // Restart the loop or handle it accordingly
+                    continue;
                 }
                 else
                 {
+                    Console.WriteLine();
+                    Console.WriteLine("Exiting the Virtual Pet Simulator. Goodbye!");
                     restart = false;
                     playAgain = (chooseRestartGameAction == 1);
                 }

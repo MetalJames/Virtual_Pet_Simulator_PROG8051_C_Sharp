@@ -2,8 +2,10 @@
 {
     public class Pet_Care_Actions
     {
+        // Feed action for the pet
         public static void Feed(ref int hunger, ref int health, ref string petName)
         {
+            // Check if the pet is already full
             if (hunger >= 0 && hunger <=1)
             {
                 Console.WriteLine();
@@ -25,11 +27,15 @@
             }
         }
 
+        // Play action for the pet
         public static void Play(ref int hunger, ref int happiness, ref int health, ref string petName)
         {
+            // Check if the pet is in a condition to play
             if ( hunger >= 8 || health <= 3)
             {
+                Console.WriteLine();
                 Console.WriteLine("I will not play with you, first you have to feed me");
+                Console.WriteLine();
             } else
             {
                 hunger--;
@@ -40,6 +46,7 @@
             }
         }
 
+        // Rest action for the pet
         public static void Rest(ref int health, ref int happiness, ref string petName)
         {
             health += 3;
