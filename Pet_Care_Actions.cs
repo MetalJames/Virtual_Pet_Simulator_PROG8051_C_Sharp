@@ -2,9 +2,9 @@
 {
     public class Pet_Care_Actions
     {
-        public static void Feed(ref int hunger, ref int health, ref string selectedPet)
+        public static void Feed(ref int hunger, ref int health, ref string petName)
         {
-            if (hunger >= 15 && hunger <=17)
+            if (hunger >= 0 && hunger <=1)
             {
                 Console.WriteLine();
                 Console.WriteLine("I am full, I can not eat anymore.");
@@ -12,21 +12,22 @@
                 Console.WriteLine();
             }
             else {
-                hunger += 4;
-                if(hunger > 17)
+                hunger -= 3;
+                health += 1;
+                if(hunger <= 0)
                 {
-                    hunger = 17;
+                    hunger = -1;
                 }
                 health++;
                 Console.WriteLine();
-                Console.WriteLine($"You feed {selectedPet}, he is very thankful for that :)");
+                Console.WriteLine($"You feed {petName}, he is very thankful for that :) His hunger, decreases, and health improves slightly.");
                 Console.WriteLine();
             }
         }
 
-        public static void Play(ref int hunger, ref int happiness, ref int health, ref string selectedPet)
+        public static void Play(ref int hunger, ref int happiness, ref int health, ref string petName)
         {
-            if ( hunger <= 5 || health <= 5)
+            if ( hunger >= 8 || health <= 3)
             {
                 Console.WriteLine("I will not play with you, first you have to feed me");
             } else
@@ -34,17 +35,17 @@
                 hunger--;
                 happiness += 3;
                 Console.WriteLine();
-                Console.WriteLine($"That was a nice game with {selectedPet} :)");
+                Console.WriteLine($"That was a nice game with {petName} :)");
                 Console.WriteLine();
             }
         }
 
-        public static void Rest(ref int health, ref int happiness, ref string selectedPet)
+        public static void Rest(ref int health, ref int happiness, ref string petName)
         {
             health += 3;
             happiness--;
             Console.WriteLine();
-            Console.WriteLine($"Your {selectedPet} is taking a nap :)");
+            Console.WriteLine($"Your {petName} is taking a nap :)");
             Console.WriteLine();
         }
     }

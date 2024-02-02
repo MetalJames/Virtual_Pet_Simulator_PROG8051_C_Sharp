@@ -2,29 +2,29 @@
 
 public class Pet_Status_Monitor
 {
-    public static void CheckStatus(int hunger, int happiness, int health, string selectedPet)
+    public static void CheckStatus(int hunger, int happiness, int health, string petName)
     {
         Console.WriteLine();
-        Console.WriteLine($"{selectedPet} Status");
+        Console.WriteLine($"{petName}'s Status");
         Console.WriteLine($"- Hunger: {hunger}");
         Console.WriteLine($"- Happiness: {happiness}");
         Console.WriteLine($"- Health: {health}");
         Console.WriteLine();
 
         // Check for critical conditions of our pet
-        if (hunger <= 2)
+        if (hunger >= 8)
         {
-            Console.WriteLine("Your pet is starving! Feed him now!");
+            Console.WriteLine($"Your {petName} is starving! Feed him now!");
         }
         
         if (happiness <= 3)
         {
-            Console.WriteLine("Your pet is very unhappy. Play with him to make him happier!");
+            Console.WriteLine($"Your {petName} is very unhappy. Play with him to make him happier!");
         }
 
         if (health <= 3)
         {
-            Console.WriteLine("Your pet's health is critical. Take care of him!");
+            Console.WriteLine($"Your {petName}'s health is critical. Take care of him!");
         }
     }
 }

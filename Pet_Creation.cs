@@ -27,7 +27,7 @@ namespace Virtual_Pet_Simulator_PROG8051_C__
             // This will prevent program from crashing if user will enter anything else besides 1-5(character or any special character)
             while (true)
             {
-                Console.WriteLine("User Input: ");
+                Console.Write("User Input: ");
                 if (int.TryParse(Console.ReadLine(), out petTypeChoice) && petTypeChoice >= 1 && petTypeChoice <= 3)
                 {
                     break;
@@ -47,16 +47,19 @@ namespace Virtual_Pet_Simulator_PROG8051_C__
             {
                 case 1:
                     selectedPet = cat;
+                    Console.WriteLine();
                     Console.WriteLine($"You've chosen a {cat}. What would you like to name your pet?");
                     Console.WriteLine();
                     break;
                 case 2:
                     selectedPet = dog;
+                    Console.WriteLine();
                     Console.WriteLine($"You've chosen a {dog}. What would you like to name your pet?");
                     Console.WriteLine();
                     break;
                 case 3:
                     selectedPet = rabbit;
+                    Console.WriteLine();
                     Console.WriteLine($"You've chosen a {rabbit}. What would you like to name your pet?");
                     Console.WriteLine();
                     break;
@@ -66,7 +69,7 @@ namespace Virtual_Pet_Simulator_PROG8051_C__
             while (true)
             {
                 // Give the pet a name
-                Console.WriteLine("Give your pet a name: ");
+                Console.Write("Give your pet a name: ");
                 petName = Console.ReadLine();
 
                 // Check if the petName contains only letters, numbers, characters, underscore (_), space (' '), dash (-), or period (.)
@@ -82,6 +85,7 @@ namespace Virtual_Pet_Simulator_PROG8051_C__
             }
 
             // Display a welcome message
+            Console.WriteLine();
             Console.WriteLine($"Congratulations! You now have a {selectedPet} named {petName}.");
             Console.WriteLine();
         }

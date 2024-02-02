@@ -8,12 +8,12 @@ class VirtualPetSimulator
 
         while (playAgain)
         {
-            // Step 1: Pet Creation
+            // Pet Creation
             Pet_Creation.CreatePet(out string selectedPet, out string petName);
 
-            // Step 2: Pet Care Actions
-            int hunger = 10;
-            int happiness = 10;
+            // Pet Care Actions
+            int hunger = 4;
+            int happiness = 11;
             int health = 10;
 
             bool run = true;
@@ -23,20 +23,24 @@ class VirtualPetSimulator
             while (run)
             {
                 // Update pet stats based on time passage
-                hunger -= 1; // Increase hunger over time
-                happiness -= 1; // Decrease happiness slightly over time
+                hunger++; // Increase hunger over time
+                happiness--; // Decrease happiness slightly over time
+                if (happiness < 0)
+                {
+                    happiness = 0; 
+                }
 
                 // Display options for user interaction
-                Console.WriteLine("Choose an action:");
-                Console.WriteLine("1. Feed");
-                Console.WriteLine("2. Play");
-                Console.WriteLine("3. Rest");
-                Console.WriteLine("4. CheckStatus");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("Choose an Action:");
+                Console.WriteLine($"1. Feed {petName}");
+                Console.WriteLine($"2. Play with {petName}");
+                Console.WriteLine($"3. Let {petName} Rest");
+                Console.WriteLine($"4. Check {petName}'s Status");
+                Console.WriteLine($"5. Exit");
                 Console.WriteLine();
 
                 // Get user choice
-                Console.WriteLine("Enter your choice (1-5): ");
+                Console.Write("Enter your choice (1-5): ");
 
                 // This will prevent program from crashing if user will enter anything else besides 1-5(character or any special character)
                 bool validActionInput = int.TryParse(Console.ReadLine(), out int choiceAction);
@@ -70,20 +74,34 @@ class VirtualPetSimulator
                         break;
                 }
                 
-                if (hunger >= 1 && hunger <= 4)
+                if (hunger >= 7 && hunger <= 9)
                 {
                     health -= 3;
                     Console.WriteLine("I am hungry :( Please feed me.");
+                    Console.WriteLine();
                 }
-                if (happiness <= 4)
+                if (happiness >= 2 && happiness <= 3)
                 {
-                    health -= 3;
+                    health--;
                     Console.WriteLine("I feel lonely and unhappy :( Can you play with me.");
+                    Console.WriteLine();
+                }
+                else if (happiness == 1)
+                {
+                    health--;
+                    Console.WriteLine("I am depressed. Pleaasssssse - play with me!");
+                    Console.WriteLine();
+                }
+                else if (happiness <= 1)
+                {
+                    health--;
+                    happiness = 0;
                 }
 
-                if (hunger == 0 || health == 0)
+                if (hunger == 10 || health == 0)
                 {
                     Console.WriteLine("You were very negled. Your pet died :(");
+                    Console.WriteLine();
                     run = false;
                 }
             }
