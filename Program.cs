@@ -12,7 +12,7 @@ class VirtualPetSimulator
             Pet_Creation.CreatePet(out string selectedPet, out string petName);
 
             // Pet Care Actions
-            int hunger = 4;
+            int hunger = 2;
             int happiness = 9;
             int health = 8;
 
