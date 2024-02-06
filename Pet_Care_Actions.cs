@@ -9,7 +9,7 @@
             if (hunger <= 1)
             {
                 Console.WriteLine();
-                Console.WriteLine("I am full, I can not eat anymore.");
+                Console.WriteLine("I am full and cannot eat anymore.");
                 health -= 2;
                 Console.WriteLine();
             }
@@ -21,7 +21,7 @@
                     hunger = 0;
                 }
                 Console.WriteLine();
-                Console.WriteLine($"You feed {petName}, he is very thankful for that :) His hunger, decreases, and health improves slightly.");
+                Console.WriteLine($"You feed {petName}, he is very thankful for that :) His hunger decreases, and his health improves slightly..");
                 Console.WriteLine();
             }
         }
@@ -33,7 +33,7 @@
             if ( hunger >= 8 || health <= 3)
             {
                 Console.WriteLine();
-                Console.WriteLine("I will not play with you, first you have to feed me");
+                Console.WriteLine("I won't play with you until you feed me first.");
                 Console.WriteLine();
             } else
             {
