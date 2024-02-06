@@ -13,8 +13,8 @@ class VirtualPetSimulator
 
             // Pet Care Actions
             int hunger = 4;
-            int happiness = 11;
-            int health = 10;
+            int happiness = 9;
+            int health = 8;
 
             bool run = true;
 
@@ -26,9 +26,18 @@ class VirtualPetSimulator
                 hunger++; // Increase hunger over time
                 happiness--; // Decrease happiness slightly over time
                 // Preventing happiness from falling below 0
-                if (happiness < 0)
+                if (happiness < 1)
                 {
-                    happiness = 0; 
+                    happiness = 1; 
+                }
+                else if (happiness >= 11)
+                {
+                    happiness = 10;
+                }
+                // Preventing health from going above 10
+                if (health >= 11)
+                {
+                    health = 10;
                 }
 
                 // Display options for user interaction
@@ -48,6 +57,9 @@ class VirtualPetSimulator
 
                 if (!validActionInput || choiceAction < 1 || choiceAction > 5)
                 {
+                    // If input is invalid this will prevent from increasing hunger and decreasing happiness
+                    hunger--; // Decrease hunger over time
+                    happiness++; // Increase happiness slightly over time
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
                     continue;
                 }
@@ -77,30 +89,30 @@ class VirtualPetSimulator
                 }
 
                 // Check for hunger and happiness conditions only if the user did not choose to check the status or exit
-                if (choiceAction != 4 || choiceAction == 5)
+                if (choiceAction != 4 && choiceAction != 5)
                 {
-                    if (hunger >= 7 && hunger <= 9)
+                    if (choiceAction != 1 && hunger == 8 && hunger == 9 && health !=0)
                     {
                         health -= 3;
                         Console.WriteLine("I am hungry :( Please feed me.");
                         Console.WriteLine();
                     }
-                    if (happiness >= 2 && happiness <= 3)
+                    if (choiceAction != 2 && happiness == 3 && health != 0)
                     {
                         health--;
                         Console.WriteLine("I feel lonely and unhappy :( Can you play with me.");
                         Console.WriteLine();
                     }
-                    else if (happiness == 1)
+                    else if (choiceAction != 2 && happiness == 2 && health != 0)
                     {
                         health--;
                         Console.WriteLine("I am depressed. Pleaasssssse - play with me!");
                         Console.WriteLine();
                     }
-                    else if (happiness <= 1)
+                    else if (choiceAction != 2 && happiness <= 1 && health != 0)
                     {
                         health--;
-                        happiness = 0;
+                        happiness = 1;
                     }
                 }
 

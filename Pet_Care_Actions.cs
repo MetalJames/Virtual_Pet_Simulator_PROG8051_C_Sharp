@@ -6,19 +6,19 @@
         public static void Feed(ref int hunger, ref int health, ref string petName)
         {
             // Check if the pet is already full
-            if (hunger >= 0 && hunger <=1)
+            if (hunger <= 1)
             {
                 Console.WriteLine();
                 Console.WriteLine("I am full, I can not eat anymore.");
-                health -= 1;
+                health -= 2;
                 Console.WriteLine();
             }
             else {
                 hunger -= 3;
-                health += 1;
+                health++;
                 if(hunger <= 0)
                 {
-                    hunger = -1;
+                    hunger = 0;
                 }
                 health++;
                 Console.WriteLine();
@@ -38,8 +38,8 @@
                 Console.WriteLine();
             } else
             {
-                hunger--;
-                happiness += 3;
+                hunger++;
+                happiness += 2;
                 Console.WriteLine();
                 Console.WriteLine($"That was a nice game with {petName} :)");
                 Console.WriteLine();
@@ -49,7 +49,7 @@
         // Rest action for the pet
         public static void Rest(ref int health, ref int happiness, ref string petName)
         {
-            health += 3;
+            health += 2;
             happiness--;
             Console.WriteLine();
             Console.WriteLine($"Your {petName} is taking a nap :)");
