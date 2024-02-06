@@ -20,7 +20,6 @@
                 {
                     hunger = 0;
                 }
-                health++;
                 Console.WriteLine();
                 Console.WriteLine($"You feed {petName}, he is very thankful for that :) His hunger, decreases, and health improves slightly.");
                 Console.WriteLine();
