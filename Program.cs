@@ -12,9 +12,10 @@ class VirtualPetSimulator
             Pet_Creation.CreatePet(out string selectedPet, out string petName);
 
             // Pet Care Actions
-            int hunger = 2;
-            int happiness = 9;
+            int hunger = 3;
+            int happiness = 8;
             int health = 8;
+            int actionCount = 0;
 
             bool run = true;
 
@@ -22,9 +23,6 @@ class VirtualPetSimulator
 
             while (run)
             {
-                // Update pet stats based on time passage
-                hunger++; // Increase hunger over time
-                happiness--; // Decrease happiness slightly over time
                 // Preventing happiness from falling below 0
                 if (happiness < 1)
                 {
@@ -57,9 +55,6 @@ class VirtualPetSimulator
 
                 if (!validActionInput || choiceAction < 1 || choiceAction > 5)
                 {
-                    // If input is invalid this will prevent from increasing hunger and decreasing happiness
-                    hunger--; // Decrease hunger over time
-                    happiness++; // Increase happiness slightly over time
                     Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
                     continue;
                 }
@@ -88,28 +83,44 @@ class VirtualPetSimulator
                         break;
                 }
 
+                // Update pet stats based on time passage every two actions, but only if the user input was valid
+                if (validActionInput && choiceAction != 5 && actionCount % 2 == 0)
+                {
+                    hunger++; // Increase hunger over time
+                    happiness--; // Decrease happiness slightly over time
+                }
+
                 // Check for hunger and happiness conditions only if the user did not choose to check the status or exit
                 if (choiceAction != 4 && choiceAction != 5)
                 {
-                    if (choiceAction != 1 && hunger == 8 && hunger == 9 && health !=0)
+                    if (hunger >= 7 && hunger <= 9)
                     {
+                        if (choiceAction != 1 && health != 0)
+                        {
+                            Console.WriteLine("I am hungry :( Please feed me.");
+                            Console.WriteLine();
+                        }
                         health -= 3;
-                        Console.WriteLine("I am hungry :( Please feed me.");
-                        Console.WriteLine();
                     }
-                    if (choiceAction != 2 && happiness == 3 && health != 0)
+                    if (happiness == 3)
                     {
-                        health--;
-                        Console.WriteLine("I feel lonely and unhappy :( Can you play with me.");
-                        Console.WriteLine();
+                        if(choiceAction != 2 && health != 0)
+                        {
+                            Console.WriteLine("I feel lonely and unhappy :( Can you play with me.");
+                            Console.WriteLine();
+                        }
+                            health--;
                     }
-                    else if (choiceAction != 2 && happiness == 2 && health != 0)
+                    else if (happiness == 2)
                     {
+                        if(choiceAction != 2 && health != 0)
+                        {
+                            Console.WriteLine("I am depressed. Pleaasssssse - play with me!");
+                            Console.WriteLine();
+                        }
                         health--;
-                        Console.WriteLine("I am depressed. Pleaasssssse - play with me!");
-                        Console.WriteLine();
                     }
-                    else if (choiceAction != 2 && happiness <= 1 && health != 0)
+                    else if (happiness <= 1)
                     {
                         health--;
                         happiness = 1;
@@ -126,6 +137,8 @@ class VirtualPetSimulator
                          run = false;
                     }
                 }
+                // Increment action count after each valid action
+                actionCount++;
             }
 
             while (restart)
@@ -137,7 +150,7 @@ class VirtualPetSimulator
                 Console.WriteLine();
 
                 // Get user choice
-                Console.Write("Enter your choice (1-5): ");
+                Console.Write("Enter your choice (1 or 2): ");
                 // This will prevent the program from crashing if the user enters anything else besides 1-2 (character or any special character)
                 bool validRestartGameInput = int.TryParse(Console.ReadLine(), out int chooseRestartGameAction);
 

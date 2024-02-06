@@ -38,7 +38,7 @@
             } else
             {
                 hunger++;
-                happiness += 2;
+                happiness += 3;
                 Console.WriteLine();
                 Console.WriteLine($"That was a nice game with {petName} :)");
                 Console.WriteLine();
